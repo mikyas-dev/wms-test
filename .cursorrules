@@ -1,0 +1,9 @@
+make sure everytime you change a file, you add it to changelog.txt file, the format should be:
+
+[DATE] [TIME] [FILE] [DESCRIPTION]
+
+Never delete any text from the changelog.txt file. Only add to it.
+
+Never make assumptions about variable names, or existing files. Always check the codebase first, or ask me to give you clarification. 
+
+Always check which files could be affecting a given page, and check those files first before making any assumptions. 

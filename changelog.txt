@@ -1,0 +1,126 @@
+[2024-01-09] [14:30] [app/api/stock/putaway-batch/route.ts] Fixed TypeScript errors by updating transaction creation to use putawayBatchId instead of nested connect syntax
+[2024-01-09] [14:35] [app/settings/page.tsx] Fixed incorrect toast import path from @/components/ui/use-toast to @/hooks/use-toast
+[2024-01-09] [14:40] [components/ui/dialog.tsx] Improved dialog overlay with backdrop blur and better background opacity
+[2024-01-09] [14:40] [components/add-sku-dialog.tsx] Enhanced dialog layout with proper scrolling and overflow handling
+[2024-01-09] [14:45] [components/add-sku-form.tsx] Created new reusable AddSkuForm component
+[2024-01-09] [14:45] [app/stock/add-sku/page.tsx] Added dedicated page for adding SKUs
+[2024-01-09] [14:45] [app/stock/putaway/add-sku/page.tsx] Updated putaway add SKU page to use new AddSkuForm component
+[2024-01-09] [14:50] [components/sku-table.tsx] Replaced SKU dialog with navigation to dedicated add SKU page
+[2024-01-09] [14:50] [components/sku-table.tsx] Fixed table width and column proportions for better desktop layout
+[2024-01-09] [14:55] [components/sku-table.tsx] Added automatic refresh handling when returning from add SKU page
+[2024-01-09] [14:55] [app/stock/add-sku/page.tsx] Updated to trigger SKU table refresh after adding new SKU
+[2024-01-09] [15:00] [app/stock/add-sku/page.tsx] Converted to client component and fixed redirection after adding SKU
+[2024-01-09] [15:05] [components/add-sku-form.tsx] Fixed navigation timing after SKU creation to ensure success toast is visible
+[2024-01-09] [15:10] [app/stock/add-sku/page.tsx] Fixed redirect path to correct SKU management page (/stock)
+[2024-01-09] [15:15] [app/stock/add-sku/page.tsx] Fixed redirect path to correct SKU page (/sku)
+[2024-01-09] [15:20] [app/stock/add-sku/page.tsx] Fixed redirect path to correct stock/sku page (/stock/sku)
+[2024-01-09] [15:25] [multiple] Removed unnecessary refresh logic since page navigation already fetches fresh data
+[2024-01-09] [15:30] [app/api/stock/putaway-batch/route.ts] Fixed transaction creation by using direct toLocationId instead of nested write
+[2024-01-09] [15:35] [app/api/putaway-batch/[id]/route.ts] Created API route for editing and undoing putaway batches
+[2024-01-09] [15:40] [components/edit-putaway-dialog.tsx] Created dialog component for editing putaway quantities
+[2024-01-09] [15:45] [components/putaway-batch-list.tsx] Added edit functionality to putaway batch list
+[2024-01-09] [15:50] [components/putaway-batch-list.tsx] Enhanced status display with colored badges and improved button visibility
+[2024-01-09] [15:55] [components/ui/badge.tsx] Created Badge component for status indicators
+[2024-01-09] [15:55] [app/dashboard/page.tsx] Enhanced dashboard layout and included toLocation in batch queries
+[2024-01-09] [16:00] [app/dashboard/page.tsx] Added statistics cards showing total items, locations, stock records, and quantities
+[2024-01-09] [16:05] [app/page.tsx] Replaced individual transactions with putaway batches on main dashboard
+[2024-01-09] [16:10] [app/page.tsx] Improved batch list with functional edit/undo buttons and icons
+[2024-01-09] [16:15] [components/batch-list-item.tsx] Created new client component for batch list items
+[2024-01-09] [16:15] [app/page.tsx] Split page into server and client components to fix "use client" directive error
+[2024-01-09] [16:20] [app/page.tsx] Fixed Prisma import to use existing db.ts and added proper TypeScript interfaces
+[2024-01-09] [16:25] [components/batch-list-item.tsx] Updated to use Next.js router.refresh() instead of window.location.reload()
+[2024-01-09] [16:30] [app/page.tsx] Replaced Prisma ORM query with raw SQL to fix type issues and improve data fetching
+[2024-01-09] [16:35] [components/recent-putaways.tsx] Fixed Prisma query to use proper query builder instead of raw SQL
+[2024-01-09] [16:35] [app/layout.tsx] Restored container class and padding to main element
+[2024-01-09] [16:35] [app/page.tsx] Removed duplicate container class from home page
+[2024-01-09] [16:40] [components/stock-lookup.tsx] Fixed incorrect toast import path from @/components/ui/use-toast to @/hooks/use-toast
+[2024-01-09] [16:45] [components/recent-putaways.tsx] Added proper TypeScript types for Prisma query results
+[2024-01-09] [16:50] [components/edit-putaway-dialog.tsx] Fixed quantity input handling to prevent leading zeros and improve empty value handling
+[2024-01-09] [16:55] [components/ui/dialog.tsx] Enhanced base dialog component with better mobile viewport handling and scrolling
+[2024-01-09] [16:55] [components/edit-putaway-dialog.tsx] Improved dialog layout for better mobile experience with fixed header and footer
+[2024-01-09] [17:00] [components/edit-putaway-dialog.tsx] Added keyboard visibility detection and improved form handling to prevent accidental submissions
+[2024-01-09] [17:05] [components/edit-putaway-dialog.tsx] Fixed form submission handling to ensure save button works properly
+[2024-01-09] [17:10] [components/create-locations-form.tsx] Fixed incorrect toast import path from @/components/ui/use-toast to @/hooks/use-toast
+[2024-01-09] [17:15] [components/locations-table.tsx] Fixed incorrect toast import path from @/components/ui/use-toast to @/hooks/use-toast
+[2024-01-09] [17:20] [app/stock/lookup/page.tsx] Added max-w-6xl to container for better content width
+[2024-01-09] [17:20] [components/stock-lookup.tsx] Improved mobile responsiveness with better grid layout and table handling
+[2024-01-09] [17:25] [components/remove-stock-form.tsx] Updated to use barcode scanner input instead of camera, matching putaway flow
+[2024-01-09] [17:30] [app/stock/remove/page.tsx] Added proper location validation and stock checking before showing remove form
+[2024-01-09] [17:30] [components/remove-stock-form.tsx] Improved barcode scanning with auto-focus and better input handling
+[2024-01-09] [17:35] [components/remove-items-form.tsx] Created RemoveItemsForm component for handling stock removal with barcode scanning and quantity management
+[2024-01-09] [17:40] [app/api/stock/remove/route.ts] Created API route for removing stock with transaction support and validation
+[2024-01-09] [17:45] [components/remove-stock-form.tsx] Enhanced input focus handling with more aggressive focus management and cursor positioning
+[2024-01-09] [17:50] [components/remove-items-form.tsx] Updated remove items form with improved styling, error sounds, and mobile responsiveness to match putaway form
+[2024-01-09] [17:55] [components/remove-items-form.tsx] Fixed barcode scanning to process scans immediately and added debug logging
+[2024-01-09] [18:00] [lib/play-error-sound.ts] Fixed error sound to properly handle multiple plays by reusing AudioContext
+[2024-01-09] [18:00] [components/remove-items-form.tsx] Centered footer buttons with max width container
+[2024-01-09] [18:05] [components/remove-items-form.tsx] Added manual barcode entry dialog with keyboard button
+[2024-01-09] [18:10] [components/remove-stock-form.tsx] Added manual location code entry with keyboard button and dialog
+[2024-01-09] [18:10] [components/putaway-form.tsx] Added manual location code entry with keyboard button and dialog
+[2024-01-09] [18:15] [components/putaway-items-form.tsx] Added manual barcode entry for items with keyboard button and dialog
+[2024-01-09] [18:20] [app/layout.tsx] Increased main container max width to 1600px for better use of screen space
+[2024-01-09] [18:25] [components/move-stock-form.tsx] Fixed incorrect toast import path from @/components/ui/use-toast to @/hooks/use-toast
+[2024-01-09] [18:30] [app/stock/putaway/page.tsx] Optimized container widths for better mobile responsiveness
+[2024-01-09] [18:30] [app/stock/remove/page.tsx] Optimized container widths for better mobile responsiveness
+[2024-01-09] [18:35] [tailwind.config.ts] Updated container configuration for better mobile responsiveness and screen space utilization site-wide
+[2024-01-09] [14:30] [app/stock/move/page.tsx] Removed container and max-width constraints to improve mobile responsiveness
+[2024-01-09] [14:30] [app/stock/sku/page.tsx] Removed container and padding constraints to improve mobile responsiveness
+[2024-01-09] [14:30] [app/stock/lookup/page.tsx] Removed container and max-width constraints to improve mobile responsiveness
+[2024-01-09] [14:35] [components/sku-table.tsx] Added mobile-friendly card view and improved responsive layout for SKU management table
+[2024-01-09] [14:40] [tailwind.config.ts] Updated container configuration with better padding and breakpoint values
+[2024-01-09] [14:40] [app/layout.tsx] Added max-width to main container for better desktop layout while maintaining mobile responsiveness
+[2024-01-09] [14:45] [Multiple Pages] Updated all main pages to use full width on desktop while maintaining mobile responsiveness
+[2024-01-09] [14:45] [app/stock/layout.tsx] Removed max-w-xl constraint to allow stock pages to use full container width
+[2024-01-09] [14:50] [app/stock/remove/page.tsx] Removed inconsistent max-width constraints to follow layout structure consistently
+[2024-01-09] [14:55] [app/page.tsx] Updated home page to use consistent container structure
+[2024-01-09] [14:55] [app/locations/layout.tsx] Created locations layout file to maintain consistent width across all pages
+[2024-01-09] [15:00] [app/(main)/layout.tsx] Created shared layout file for all main pages
+[2024-01-09] [15:00] [app/stock/layout.tsx, app/locations/layout.tsx] Removed individual layout files in favor of shared layout
+[2024-01-09] [15:00] [Multiple] Moved pages to app/(main) directory for consistent layout structure
+[2024-01-09] [15:05] [app/(main)/*] Moved all pages (home, stock, locations) under (main) directory to share the same layout
+[2024-01-09] [15:10] [app/(main)/*] Removed redundant layout files from locations and stock directories to use single shared layout
+[2024-01-09] [15:15] [app/(main)/layout.tsx] Updated main layout to ensure consistent full width across all pages
+[2024-01-09] [14:30] [app/(main)/settings/page.tsx] Updated settings page layout to match shared pattern and improve mobile responsiveness
+[2024-01-09] [14:35] [components/recent-putaways.tsx] Fixed prisma import path and added type import for PutawayBatch
+[2024-01-09] [14:40] [components/recent-putaways.tsx] Added type import for PutawayBatch to fix linter error
+[2024-01-09] [14:45] [lib/db.ts] Fixed Prisma client import path to use @prisma/client
+[2024-01-09] [14:50] [lib/prisma.ts] Removed redundant Prisma client file in favor of lib/db.ts
+[2024-01-09] [14:55] [components/recent-putaways.tsx] Updated Prisma type imports to use proper type inference
+[2024-01-09] [15:00] [components/move-stock-form.tsx] Added isScanning prop to BarcodeScanner component to fix TypeScript error
+[2024-01-09] [15:05] [components/move-stock-form.tsx] Updated move stock form to match putaway and remove stock patterns with proper barcode scanning and mobile responsiveness
+[2024-01-09] [15:10] [components/move-stock-form.tsx] Refactored move stock form to handle initial bay scanning and redirect to items page
+[2024-01-09] [15:15] [app/(main)/stock/move/items/page.tsx] Created move items page to handle item selection after scanning source bay
+[2024-01-09] [15:15] [components/move-items-form.tsx] Created move items form component with barcode scanning and quantity selection
+[2024-01-09] [15:20] [components/move-items-form.tsx] Fixed barcode scanning to process scans immediately and added proper form submit handlers
+[2024-01-09] [15:25] [components/move-items-form.tsx] Updated to use localStorage for storing move data instead of URL parameters
+[2024-01-09] [15:25] [app/(main)/stock/move/destination/page.tsx] Created destination page for move stock process
+[2024-01-09] [15:25] [app/api/stock/move/route.ts] Created API endpoint for moving stock between locations
+[2024-01-09] [15:30] [app/api/locations/validate/route.ts] Created location validation endpoint
+[2024-01-09] [15:35] [components/recent-movements.tsx] Created recent movements component to show all stock movements
+[2024-01-09] [15:35] [app/(main)/page.tsx] Updated home page to show recent movements instead of recent putaways
+[2024-01-09] [15:40] [components/recent-movements.tsx] Fixed recent movements component to be server-side
+[2024-03-20] [10:00] [.env] Added SITE_PASSWORD environment variable
+[2024-03-20] [10:00] [middleware.ts] Created new file for authentication middleware
+[2024-03-20] [10:00] [app/login/page.tsx] Created new login page
+[2024-03-20] [10:00] [app/api/login/route.ts] Created new login API route
+[2024-03-20] [10:30] [components/remove-stock-selection.tsx] Fixed toast import path
+[2024-03-20] [10:30] [components/stock-summary-table.tsx] Created stock summary table component
+[2024-03-20] [11:00] [lib/db.ts] Enhanced Prisma client with better connection handling and auto-reconnect
+[2024-03-20] [11:30] [lib/db.ts] Updated Prisma client to handle Render.com database spin-up behavior
+[2024-03-20] [11:45] [components/stats-cards.tsx] Added retry logic and error handling for database queries
+[2024-03-20] [12:00] [components/recent-movements.tsx] Added retry logic and improved error handling for database connections
+[2024-03-20] [12:15] [.env] Fixed DATABASE_URL to use correct Render.com hostname
+[2024-03-20] [12:30] [scripts/*] Added database backup scripts (bash, PowerShell, and GitHub Actions)
+[2024-03-20] [12:45] [app/(main)/stock/summary/page.tsx] Fixed stock summary page to use correct Prisma schema fields
+[2024-03-20] [12:45] [components/stock-summary-table.tsx] Updated stock summary table to use location.label instead of bayCode
+[2024-03-20] [13:00] [.gitignore] Updated to keep Prisma migrations and better organize ignored files
+[2024-03-20] [13:15] [package.json] Added @types/lodash for TypeScript support
+[2024-03-20] [13:30] [components/barcode-scanner.tsx] Fixed type error in QR code format handling
+[2024-03-20] [13:45] [components/barcode-scanner.tsx] Removed unused camera-based barcode scanner component as we use scan gun input instead
+[2024-03-20] [14:00] [components/theme-provider.tsx] Fixed next-themes type import to use correct path
+[2024-03-20] [14:15] [package.json] Added react-hook-form dependency for form handling
+[2024-03-20] [14:30] [package.json] Updated dependencies and removed unused barcode scanning packages
+[2024-03-20] [14:45] [lib/db.ts] Modified Prisma client to handle Vercel build process correctly
+[2024-03-20] [15:00] [package.json] Added Prisma generate to build and postinstall scripts for Vercel deployment
+[2024-03-20] [15:15] [app/api/locations/validate/route.ts] Added force-dynamic export to fix static generation error
+[2024-03-20] [15:15] [app/(main)/stock/putaway/add-sku/page.tsx] Added Suspense boundary for useSearchParams

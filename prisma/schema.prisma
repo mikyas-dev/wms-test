@@ -1,0 +1,144 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgres url"
+}
+
+model Location {
+  id               String         @id @default(cuid())
+  aisle            String
+  bay              String
+  height           String
+  label            String         @unique
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+  type             String
+  putawayBatches   PutawayBatch[]
+  stocks           Stock[]
+  fromTransactions Transaction[]  @relation("FromLocation")
+  toTransactions   Transaction[]  @relation("ToLocation")
+
+  @@index([label])
+}
+
+model Company {
+  id        String   @id @default(cuid())
+  code      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  items     Item[]
+  users     User[]
+
+  @@index([code])
+}
+
+model Item {
+  id           String        @id @default(cuid())
+  sku          String
+  name         String
+  description  String?
+  barcode      String
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  companyId    String
+  company      Company       @relation(fields: [companyId], references: [id])
+  stocks       Stock[]
+  transactions Transaction[]
+
+  @@unique([companyId, sku])
+  @@unique([companyId, barcode])
+  @@index([companyId, sku, barcode])
+}
+
+model Stock {
+  id         String   @id @default(cuid())
+  quantity   Int
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  itemId     String
+  locationId String
+  item       Item     @relation(fields: [itemId], references: [id])
+  location   Location @relation(fields: [locationId], references: [id])
+
+  @@unique([itemId, locationId])
+  @@index([itemId])
+  @@index([locationId])
+}
+
+
+enum TransactionStatus {
+  COMPLETED
+  UNDONE
+}
+
+model Transaction {
+  id             String            @id @default(cuid())
+  quantity       Int
+  type           TransactionType
+  status         TransactionStatus @default(COMPLETED)
+  undoneAt       DateTime?
+  undoneById     String?          // Reference to the user who undid the transaction
+  createdAt      DateTime         @default(now())
+  itemId         String
+  fromLocationId String?
+  toLocationId   String?
+  userId         String?
+  putawayBatchId String?
+  fromLocation   Location?        @relation("FromLocation", fields: [fromLocationId], references: [id])
+  item           Item             @relation(fields: [itemId], references: [id])
+  putawayBatch   PutawayBatch?    @relation(fields: [putawayBatchId], references: [id])
+  toLocation     Location?        @relation("ToLocation", fields: [toLocationId], references: [id])
+  user           User?            @relation(fields: [userId], references: [id])
+  undoneBy       User?            @relation("UndoneTransactions", fields: [undoneById], references: [id])
+
+  @@index([itemId])
+  @@index([fromLocationId])
+  @@index([toLocationId])
+  @@index([putawayBatchId])
+  @@index([userId])
+  @@index([undoneById])
+  @@index([status])
+}
+
+// Update User model to include undone transactions
+model User {
+  id                 String        @id @default(cuid())
+  username           String        @unique
+  passwordHash       String
+  role               UserRole
+  createdAt          DateTime      @default(now())
+  updatedAt          DateTime      @updatedAt
+  companyId          String?
+  transactions       Transaction[]
+  undoneTransactions Transaction[] @relation("UndoneTransactions")
+  company            Company?      @relation(fields: [companyId], references: [id])
+
+  @@index([username])
+  @@index([companyId])
+}
+
+model PutawayBatch {
+  id           String        @id @default(cuid())
+  locationId   String
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  status       String        @default("COMPLETED")
+  location     Location      @relation(fields: [locationId], references: [id])
+  transactions Transaction[]
+
+  @@index([locationId])
+}
+
+enum TransactionType {
+  PUTAWAY
+  REMOVE
+  MOVE
+}
+
+enum UserRole {
+  STAFF
+  ADMIN
+}
